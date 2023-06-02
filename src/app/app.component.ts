@@ -22,9 +22,11 @@ export class AppComponent {
         if (user["firstName"] == this.firstNameValue && user["lastName"] == this.lastNameValue) {
           this.authService.login(user["firstName"]+user["lastName"]);
           this.router.navigate(['chat']);
+          return;
         }
       };
 
+      alert("This user has not been found!");
     }, (error) => {
       console.error(error);
     });
