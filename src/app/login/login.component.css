@@ -10,3 +10,7 @@ h2 {
   margin-top: 20px;
   text-align: center;
 }
+
+.card-body {
+  background-color: rgb(240, 240, 240);
+}
