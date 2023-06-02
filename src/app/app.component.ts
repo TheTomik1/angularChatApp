@@ -13,9 +13,6 @@ export class AppComponent {
   lastNameValue: string = "";
   
   validateLogin(): void {
-    console.log(this.firstNameValue)
-
-
     this.http.get('https://dummyjson.com/users').subscribe((response: any) => {
       const users = response["users"];
       for (const user of users) {
