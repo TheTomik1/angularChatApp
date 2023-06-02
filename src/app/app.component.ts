@@ -19,7 +19,7 @@ export class AppComponent {
       const users = response["users"];
       for (const user of users) {
         if (user["firstName"] == this.firstNameValue && user["lastName"] == this.lastNameValue) {
-          this.authService.login();
+          this.authService.login(user["firstName"]+user["lastName"]);
         }
       };
 
