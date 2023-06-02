@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.getData();
@@ -16,15 +16,16 @@ export class AppComponent implements OnInit {
   getData() {
     const users = [];
 
-    this.http.get('https://dummyjson.com/users').subscribe((response: any) => {
-      const users = response.users;
-      for (const user of users) {
-        users.push(user);
-      
+    this.http.get('https://dummyjson.com/users').subscribe(
+      (response: any) => {
+        const users = response.users;
+        for (const user of users) {
+          users.push(user);
+        }
+      },
+      (error) => {
+        console.log(error);
       }
-
-    }, (error) => {
-      console.log(error);
-    });
+    );
   }
 }
