@@ -1,4 +1,4 @@
-import { Component, OnInit, VERSION } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'chat-app',
