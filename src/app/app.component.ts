@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { AuthService } from './auth.service';
+
 @Component({
   selector: 'chat-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   firstNameValue: string = "";
   lastNameValue: string = "";
@@ -17,7 +19,7 @@ export class AppComponent {
       const users = response["users"];
       for (const user of users) {
         if (user["firstName"] == this.firstNameValue && user["lastName"] == this.lastNameValue) {
-          console.log("yey")
+          this.authService.login();
         }
       };
 
