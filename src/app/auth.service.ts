@@ -5,16 +5,15 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   logggedInStatus: boolean = false;
+  loggedInUser: string;
 
-  public login(): void {
+  public login(getUser: string): void {
     this.logggedInStatus = !this.logggedInStatus;
+    this.loggedInUser = getUser;
   }
 
   public logOut(): void {
     this.logggedInStatus = !this.logggedInStatus;
-  }
-
-  public isLoggedIn(): boolean {
-    return this.logggedInStatus;
+    this.loggedInUser = "";
   }
 }
