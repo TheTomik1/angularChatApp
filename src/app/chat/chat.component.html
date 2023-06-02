@@ -4,10 +4,14 @@
       <div class="container">
         <div class="row">
           <div *ngFor="let user of users">
-            <div class="card" style="width: 20rem">
+            <div class="card" style="width: 20rem" (click)="interact(user)">
               <div class="card-body">
                 <h5 class="card-title">{{ user.firstName + " " + user.lastName }}</h5>
                 <p class="card-text">Email: {{ user.email }}</p>
+                <div class="inreraction-buttons" *ngIf="!user.interaction">
+                  <button class="btn btn-primary">Show Detail</button>
+                  <button class="btn btn-success chat-button">Start chat</button>
+                </div>
               </div>
             </div>
           </div>

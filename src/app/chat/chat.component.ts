@@ -19,7 +19,7 @@ export class ChatComponent {
     this.http.get<any[]>('https://dummyjson.com/users').subscribe((response) => {
         for (let user of response["users"]) {
           if (user.firstName+user.lastName != this.authService.loggedInUser) {
-            this.users.push({firstName: user.firstName, lastName: user.lastName, email: user.email});
+            this.users.push({firstName: user.firstName, lastName: user.lastName, email: user.email, interaction: true});
           }
         }
       },
@@ -27,5 +27,9 @@ export class ChatComponent {
         console.error('Error fetching user data:', error);
       }
     );
+  }
+
+  interact(user: any): void {
+    user.interaction = !user.interaction;
   }
 }
