@@ -6,6 +6,10 @@ h2 {
   text-align: center;
 }
 
+input {
+  width: 50%;
+}
+
 .submit-button {
   margin-top: 20px;
   text-align: center;
@@ -13,4 +17,8 @@ h2 {
 
 .card-body {
   background-color: rgb(240, 240, 240);
+}
+
+.center-card {
+  text-align: center;
 }
