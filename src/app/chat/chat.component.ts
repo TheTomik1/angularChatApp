@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
 import { HttpClient } from '@angular/common/http';
+
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-chat',
@@ -10,14 +11,16 @@ import { HttpClient } from '@angular/common/http';
 export class ChatComponent {
   users = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authService: AuthService) {
     this.getUsersData();
   }
 
   getUsersData(): void {
     this.http.get<any[]>('https://dummyjson.com/users').subscribe((response) => {
         for (let user of response["users"]) {
-          this.users.push({firstName: user.firstName, lastName: user.lastName, email: user.email});
+          if (user.firstName+user.lastName != this.authService.loggedInUser) {
+            this.users.push({firstName: user.firstName, lastName: user.lastName, email: user.email});
+          }
         }
       },
       (error) => {
