@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
         users.push(user);
       
       }
-      console.log(users)
+
     }, (error) => {
       console.log(error);
     });
