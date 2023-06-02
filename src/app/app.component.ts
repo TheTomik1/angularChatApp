@@ -6,15 +6,26 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   constructor(private http: HttpClient) {}
 
-  ngOnInit(): void {
-    
-  }
+  firstNameValue: string = "";
+  lastNameValue: string = "";
+  
+  validateLogin(): void {
+    console.log(this.firstNameValue)
 
-  getData() {
-    const users = [];
 
+    this.http.get('https://dummyjson.com/users').subscribe((response: any) => {
+      const users = response["users"];
+      for (const user of users) {
+        if (user["firstName"] == this.firstNameValue && user["lastName"] == this.lastNameValue) {
+          console.log("yey")
+        }
+      };
+
+    }, (error) => {
+      console.error(error);
+    });
   }
 }
