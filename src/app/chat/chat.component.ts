@@ -9,11 +9,12 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent {
-  users = [];
-
   constructor(private http: HttpClient, private authService: AuthService) {
     this.getUsersData();
   }
+
+  users: any = [];
+  currentUser = this.authService.loggedInUser;
 
   getUsersData(): void {
     this.http.get<any[]>('https://dummyjson.com/users').subscribe((response) => {

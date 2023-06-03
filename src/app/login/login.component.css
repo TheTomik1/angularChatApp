@@ -2,17 +2,13 @@ p {
   font-family: Lato;
 }
 
-h2 {
-  text-align: center;
-}
-
 input {
   width: 50%;
+  margin-left: 25%;
 }
 
 .submit-button {
   margin-top: 20px;
-  text-align: center;
 }
 
 .card-body {
@@ -21,4 +17,5 @@ input {
 
 .center-card {
   text-align: center;
+  margin-left: 33%;
 }
