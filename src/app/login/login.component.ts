@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 import { AuthService } from '../auth.service';
 
@@ -10,7 +11,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private router: Router, private http: HttpClient, private authService: AuthService) {}
+  constructor(private router: Router, private http: HttpClient, private authService: AuthService, private datePipe: DatePipe) {}
 
   firstNameValue: string = "";
   lastNameValue: string = "";
@@ -22,6 +23,9 @@ export class LoginComponent {
         if (user["firstName"] == this.firstNameValue && user["lastName"] == this.lastNameValue) {
           this.authService.login(user["firstName"]+user["lastName"]);
           this.router.navigate(['chat']);
+          const myDate = new Date(); // Replace this with your datetime value
+          const formattedDate = this.datePipe.transform(myDate, 'yyyy-MM-dd HH:mm:ss');
+          console.log(formattedDate); // Outputs the formatted date string  
           return;
         }
       };
