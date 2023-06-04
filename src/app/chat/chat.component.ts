@@ -15,6 +15,8 @@ export class ChatComponent {
 
   users: any = [];
   userDetails: Array<Object> = [];
+  userGender = "Could not determinate gender.";
+  userCountry = "Could not determinate country.";
   currentUser = this.authService.loggedInUser;
 
   getUsersData(): void {
@@ -31,7 +33,8 @@ export class ChatComponent {
               macAddress: user.macAddress,
               ip: user.ip,
               city: user.address.city,
-              email: user.email, 
+              postalCode: user.address.postalCode,
+              email: user.email,
               interaction: true});
           }
         }
@@ -42,12 +45,34 @@ export class ChatComponent {
     );
   }
 
+  getUserGender(name: string): void {
+    const apiUrl = `https://api.genderize.io/?name=${name}`;
+
+    this.http.get(apiUrl).subscribe(response => {
+      this.userGender = response["gender"];
+    }, error => {
+      console.error('Error fetching user gender:', error);
+    });
+  }
+
+  getUserCountry(postalCode: string): void {
+    const apiUrl = `https://api.zippopotam.us/us/${postalCode}`;
+
+    this.http.get(apiUrl).subscribe(response => {
+      this.userCountry = response["country"];
+    }, error => {
+      console.error('Error fetching user country:', error);
+    });
+  }
+
   interact(user: any): void {
     user.interaction = !user.interaction;
   }
 
   showUserDetails(user: any): void {
     this.userDetails = user;
+    this.getUserGender(user.firstName);
+    this.getUserCountry(user.postalCode);
   }
 
   closeUserDetails(): void {

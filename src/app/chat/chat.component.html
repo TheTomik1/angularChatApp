@@ -36,8 +36,10 @@
             <br>University: {{ userDetails['university'] }}
             <br>MAC Address: {{ userDetails['macAddress'] }}
             <br>IP Address: {{ userDetails['ip'] }}
-            <br>City: {{ userDetails['city'] }} </p>
-            <a href="#" class="btn btn-danger" click="closeUserDetails()">Close</a>
+            <br>Country: {{ userCountry }}
+            <br>City: {{ userDetails['city'] }} 
+            <br>Gender: {{ userDetails['gender'] }}</p>
+            <a href="#" class="btn btn-danger" (click)="closeUserDetails()">Close</a>
         </div>
       </div>
       
