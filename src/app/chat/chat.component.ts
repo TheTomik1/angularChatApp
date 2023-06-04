@@ -15,8 +15,8 @@ export class ChatComponent {
 
   users: any = [];
   userDetails: Array<Object> = [];
-  userGender = "Could not determinate gender.";
-  userCountry = "Could not determinate country.";
+  userGender = "";
+  userCountry = "";
   currentUser = this.authService.loggedInUser;
 
   getUsersData(): void {
@@ -51,6 +51,7 @@ export class ChatComponent {
     this.http.get(apiUrl).subscribe(response => {
       this.userGender = response["gender"];
     }, error => {
+      this.userGender = "Could not determinate gender.";
       console.error('Error fetching user gender:', error);
     });
   }
@@ -61,6 +62,7 @@ export class ChatComponent {
     this.http.get(apiUrl).subscribe(response => {
       this.userCountry = response["country"];
     }, error => {
+      this.userCountry = "Could not determinate country.";
       console.error('Error fetching user country:', error);
     });
   }
