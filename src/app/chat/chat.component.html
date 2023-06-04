@@ -30,13 +30,18 @@
       <div class="card" style="width: 25rem;">
         <img class="card-img-top" src="{{ userDetails['image'] }}" alt="Card image cap">
         <div class="card-body">
-          <h5 class="card-title">{{ userDetails['firstName'] + " " + userDetails.lastName }}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Birthdate: {{ userDetails.birthDate }}</h6>
-          <p class="card-text">Eye color: {{ userDetails.eyeColor }}<br>University: {{ userDetails.university }}</p>
+          <h5 class="card-title">{{ userDetails['firstName'] + " " + userDetails['lastName'] }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Birthdate: {{ userDetails['birthDate'] }}</h6>
+          <p class="card-text">Eye color: {{ userDetails['eyeColor'] }}
+            <br>University: {{ userDetails['university'] }}
+            <br>MAC Address: {{ userDetails['macAddress'] }}
+            <br>IP Address: {{ userDetails['ip'] }}
+            <br>City: {{ userDetails['city'] }} </p>
           <a href="#" class="card-link">Card link</a>
           <a href="#" class="card-link">Another link</a>
         </div>
       </div>
+      
     </div>
     <div class="col">
     </div>
