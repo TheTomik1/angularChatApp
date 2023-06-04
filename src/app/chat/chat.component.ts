@@ -14,13 +14,25 @@ export class ChatComponent {
   }
 
   users: any = [];
+  userDetails: Array<Object> = [];
   currentUser = this.authService.loggedInUser;
 
   getUsersData(): void {
     this.http.get<any[]>('https://dummyjson.com/users').subscribe((response) => {
         for (let user of response["users"]) {
           if (user.firstName+user.lastName != this.authService.loggedInUser) {
-            this.users.push({firstName: user.firstName, lastName: user.lastName, email: user.email, interaction: true});
+            this.users.push({firstName: user.firstName, 
+              lastName: user.lastName, 
+              username: user.username,
+              birthDate: user.birthDate,
+              image: user.image,
+              eyeColor: user.eyeColor,
+              university: user.university,
+              macAddress: user.macAddress,
+              ip: user.ip,
+              city: user.address.city,
+              email: user.email, 
+              interaction: true});
           }
         }
       },
@@ -32,5 +44,9 @@ export class ChatComponent {
 
   interact(user: any): void {
     user.interaction = !user.interaction;
+  }
+
+  showUserDetails(user: any): void {
+    this.userDetails = user;
   }
 }

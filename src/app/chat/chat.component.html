@@ -3,13 +3,12 @@
     <div class="navbar-nav ms-auto">
       <a class="nav-item nav-link" href="#">{{ currentUser }}</a>
       <a class="nav-item nav-link" href="#">Loggged at </a>
-      <a class="nav-item nav-link" href="#">Pricing</a>
     </div>
 </nav>
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col">
       <div class="container">
         <div class="row">
           <div *ngFor="let user of users">
@@ -18,7 +17,7 @@
                 <h5 class="card-title">{{ user.firstName + " " + user.lastName }}</h5>
                 <p class="card-text">Email: {{ user.email }}</p>
                 <div class="inreraction-buttons" *ngIf="!user.interaction">
-                  <button class="btn btn-primary">Show Detail</button>
+                  <button class="btn btn-primary" (click)="showUserDetails(user)">Show Detail</button>
                   <button class="btn btn-success chat-button">Start chat</button>
                 </div>
               </div>
@@ -27,11 +26,19 @@
         </div>
       </div>
     </div>
-    <div class="col-sm">
-      One of three columns
+    <div class="col">
+      <div class="card" style="width: 25rem;">
+        <img class="card-img-top" src="{{ userDetails['image'] }}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{ userDetails['firstName'] + " " + userDetails.lastName }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Birthdate: {{ userDetails.birthDate }}</h6>
+          <p class="card-text">Eye color: {{ userDetails.eyeColor }}<br>University: {{ userDetails.university }}</p>
+          <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a>
+        </div>
+      </div>
     </div>
-    <div class="col-sm">
-      One of three columns
+    <div class="col">
     </div>
   </div>
 </div>
