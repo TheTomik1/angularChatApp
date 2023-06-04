@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="col">
-      <div class="card" style="width: 25rem;">
+      <div class="card" style="width: 25rem;" *ngIf="userDetails.length !== 0">
         <img class="card-img-top" src="{{ userDetails['image'] }}" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">{{ userDetails['firstName'] + " " + userDetails['lastName'] }}</h5>
@@ -37,8 +37,7 @@
             <br>MAC Address: {{ userDetails['macAddress'] }}
             <br>IP Address: {{ userDetails['ip'] }}
             <br>City: {{ userDetails['city'] }} </p>
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
+            <a href="#" class="btn btn-danger" click="closeUserDetails()">Close</a>
         </div>
       </div>
       

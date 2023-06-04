@@ -49,4 +49,8 @@ export class ChatComponent {
   showUserDetails(user: any): void {
     this.userDetails = user;
   }
+
+  closeUserDetails(): void {
+    this.userDetails = [];
+  }
 }
