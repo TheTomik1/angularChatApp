@@ -1,9 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="./chat">Chat application</a>
-    <div class="navbar-nav ms-auto">
-      <a class="nav-item nav-link" href="#">{{ currentUser }}</a>
-      <a class="nav-item nav-link" href="#">Loggged at </a>
-    </div>
+  <div class="navbar-nav ms-auto">
+    <a class="nav-item nav-link" href="#">{{ currentUser }}</a>
+    <a class="nav-item nav-link" href="#">Loggged at </a>
+    <a class="nav-item nav-link" href="/login" (click)="logOut()">Log out</a>
+  </div>
 </nav>
 
 <div class="container">
@@ -14,11 +15,20 @@
           <div *ngFor="let user of users">
             <div class="card" style="width: 20rem" (click)="interact(user)">
               <div class="card-body">
-                <h5 class="card-title">{{ user.firstName + " " + user.lastName }}</h5>
+                <h5 class="card-title">
+                  {{ user.firstName + ' ' + user.lastName }}
+                </h5>
                 <p class="card-text">Email: {{ user.email }}</p>
                 <div class="inreraction-buttons" *ngIf="!user.interaction">
-                  <button class="btn btn-primary" (click)="showUserDetails(user)">Show Detail</button>
-                  <button class="btn btn-success chat-button">Start chat</button>
+                  <button
+                    class="btn btn-primary"
+                    (click)="showUserDetails(user)"
+                  >
+                    Show Detail
+                  </button>
+                  <button class="btn btn-success chat-button">
+                    Start chat
+                  </button>
                 </div>
               </div>
             </div>
@@ -28,23 +38,29 @@
     </div>
     <div class="col">
       <div class="card" style="width: 25rem;" *ngIf="userDetails.length !== 0">
-        <img class="card-img-top" src="{{ userDetails['image'] }}" alt="Card image cap">
+        <img
+          class="card-img-top"
+          src="{{ userDetails['image'] }}"
+          alt="Card image cap"
+        />
         <div class="card-body">
-          <h5 class="card-title">{{ userDetails['firstName'] + " " + userDetails['lastName'] }}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Birthdate: {{ userDetails['birthDate'] }}</h6>
-          <p class="card-text">Eye color: {{ userDetails['eyeColor'] }}
-            <br>University: {{ userDetails['university'] }}
-            <br>MAC Address: {{ userDetails['macAddress'] }}
-            <br>IP Address: {{ userDetails['ip'] }}
-            <br>Country: {{ userCountry }}
-            <br>City: {{ userDetails['city'] }} 
-            <br>Gender: {{ userGender }}</p>
-            <a class="btn btn-danger" (click)="closeUserDetails()">Close</a>
+          <h5 class="card-title">
+            {{ userDetails['firstName'] + ' ' + userDetails['lastName'] }}
+          </h5>
+          <h6 class="card-subtitle mb-2 text-muted">
+            Birthdate: {{ userDetails['birthDate'] }}
+          </h6>
+          <p class="card-text">
+            Eye color: {{ userDetails['eyeColor'] }} <br />University:
+            {{ userDetails['university'] }} <br />MAC Address:
+            {{ userDetails['macAddress'] }} <br />IP Address:
+            {{ userDetails['ip'] }} <br />Country: {{ userCountry }} <br />City:
+            {{ userDetails['city'] }} <br />Gender: {{ userGender }}
+          </p>
+          <a class="btn btn-danger" (click)="closeUserDetails()">Close</a>
         </div>
       </div>
-      
     </div>
-    <div class="col">
-    </div>
+    <div class="col"></div>
   </div>
 </div>

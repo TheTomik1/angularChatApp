@@ -67,6 +67,10 @@ export class ChatComponent {
     });
   }
 
+  logOut(): void {
+    this.authService.logOut();
+  }
+
   interact(user: any): void {
     user.interaction = !user.interaction;
   }
