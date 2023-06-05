@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 
 import { AuthService } from '../auth.service';
 
+import { LoginComponent } from '../login/login.component.js';
+ 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -15,6 +17,7 @@ export class ChatComponent {
 
   users: any = [];
   userDetails: Array<Object> = [];
+  userLoginTime: LoginComponent["loginTime"];
   userGender = "";
   userCountry = "";
   currentUser = this.authService.loggedInUser;

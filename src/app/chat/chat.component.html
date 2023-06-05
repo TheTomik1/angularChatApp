@@ -2,7 +2,7 @@
   <a class="navbar-brand" href="./chat">Chat application</a>
   <div class="navbar-nav ms-auto">
     <a class="nav-item nav-link" href="#">{{ currentUser }}</a>
-    <a class="nav-item nav-link" href="#">Loggged at </a>
+    <a class="nav-item nav-link" href="#">Loggged at {{ userLoginTime }}</a>
     <a class="nav-item nav-link" href="/login" (click)="logOut()">Log out</a>
   </div>
 </nav>
@@ -55,7 +55,7 @@
             {{ userDetails['university'] }} <br />MAC Address:
             {{ userDetails['macAddress'] }} <br />IP Address:
             {{ userDetails['ip'] }} <br />Country: {{ userCountry }} <br />City:
-            {{ userDetails['city'] }} <br />Gender: {{ userGender }}
+            {{ userDetails['city'] }} <br />Gender: {{ userGender.charAt(0).toUpperCase() + userGender.slice(1) }}
           </p>
           <a class="btn btn-danger" (click)="closeUserDetails()">Close</a>
         </div>
