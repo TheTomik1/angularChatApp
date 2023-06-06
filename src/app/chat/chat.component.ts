@@ -16,12 +16,13 @@ export class ChatComponent {
   }
 
   users: any = [];
+  currentUser = this.authService.loggedInUser;
   userDetails: Array<Object> = [];
+  userChatting: Boolean = false;
   userLoginTime: LoginComponent["loginTime"];
   userGender = "";
   userCountry = "";
   clickCount = 0; 
-  currentUser = this.authService.loggedInUser;
 
   getUsersData(): void {
     this.http.get<any[]>('https://dummyjson.com/users').subscribe((response) => {
@@ -71,11 +72,6 @@ export class ChatComponent {
     });
   }
 
-  logOut(): void {
-    this.authService.logOut();
-    this.clickCount = 0;
-  }
-
   interact(user: any): void {
     user.interaction = !user.interaction;
   }
@@ -90,6 +86,10 @@ export class ChatComponent {
     this.userDetails = [];
   }
 
+  handleChat(): void {
+    this.userChatting = !this.userChatting;
+  }
+
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
     this.countClicks();
@@ -97,5 +97,10 @@ export class ChatComponent {
 
   countClicks(): void {
     this.clickCount++;
+  }
+
+  logOut(): void {
+    this.authService.logOut();
+    this.clickCount = 0;
   }
 }
