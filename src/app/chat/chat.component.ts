@@ -21,10 +21,12 @@ export class ChatComponent {
   userChattingDetails: Array<Object> = [];
   userChattingMessages: Array<string> = [];
   userChattingMessage = "";
+  userChattingCharactersTyped = "";
+  userChattingChatsOpened = 0;
   userLoginTime: LoginComponent["loginTime"];
   userGender = "";
   userCountry = "";
-  clickCount = 0; 
+  clickCount = 0;
 
   getUsersData(): void {
     this.http.get<any[]>('https://dummyjson.com/users').subscribe((response) => {
@@ -91,10 +93,12 @@ export class ChatComponent {
   openChat(user: any): void {
     this.userChattingDetails = user;
     this.userChattingMessages = [];
+    this.userChattingChatsOpened++;
   }
 
   sendMessage(): void {
-    this.userChattingMessages.push(this.userChattingMessage)
+    this.userChattingMessages.push(this.userChattingMessage);
+    this.userChattingCharactersTyped += this.userChattingMessage;
     this.userChattingMessage = "";
   }
 
@@ -115,5 +119,7 @@ export class ChatComponent {
   logOut(): void {
     this.authService.logOut();
     this.clickCount = 0;
+    this.userChattingCharactersTyped = "";
+    this.userChattingChatsOpened = 0;
   }
 }
