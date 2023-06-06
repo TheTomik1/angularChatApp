@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { AuthService } from '../auth.service';
@@ -20,6 +20,7 @@ export class ChatComponent {
   userLoginTime: LoginComponent["loginTime"];
   userGender = "";
   userCountry = "";
+  clickCount = 0; 
   currentUser = this.authService.loggedInUser;
 
   getUsersData(): void {
@@ -72,6 +73,7 @@ export class ChatComponent {
 
   logOut(): void {
     this.authService.logOut();
+    this.clickCount = 0;
   }
 
   interact(user: any): void {
@@ -86,5 +88,14 @@ export class ChatComponent {
 
   closeUserDetails(): void {
     this.userDetails = [];
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    this.countClicks();
+  }
+
+  countClicks(): void {
+    this.clickCount++;
   }
 }
