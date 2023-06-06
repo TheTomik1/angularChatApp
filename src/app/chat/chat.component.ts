@@ -92,6 +92,7 @@ export class ChatComponent {
         finalResponse += "A";
       }
 
+      this.userChattingResponse = "";
       this.userChattingResponse = finalResponse;
     }, error => {
       console.error(error);
@@ -121,8 +122,8 @@ export class ChatComponent {
   sendMessage(): void {
     this.userChattingMessages.push(this.userChattingMessage);
     this.userChattingCharactersTyped += this.userChattingMessage;
+    this.getUserResponse(this.userChattingMessage);
     this.userChattingMessage = "";
-    this.getUserResponse("Test")
   }
 
   closeChat(): void {
