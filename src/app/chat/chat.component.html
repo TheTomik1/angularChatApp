@@ -67,7 +67,7 @@
             <div class="card text-bg-success p-3" style="width: 25rem; text-align: center; color: white">
               <h5 class="card-title">Message</h5>
               <p class="card-text">You: {{ message }}
-                <br>{{ userChattingDetails['firstName'] + ' ' + userChattingDetails['lastName'] }}: {{ userChattingResponse }}
+                <br>{{ userChattingDetails['firstName'] + ' ' + userChattingDetails['lastName'] }}: {{ userChattingResponse[message] }}
               </p>
             </div>
           <div>

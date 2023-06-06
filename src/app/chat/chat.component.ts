@@ -20,7 +20,7 @@ export class ChatComponent {
   userDetails: Array<Object> = [];
   userChattingDetails: Array<Object> = [];
   userChattingMessages: Array<string> = [];
-  userChattingResponse: string = "";
+  userChattingResponse: Array<object> = [];
   userChattingMessage = "";
   userChattingCharactersTyped = "";
   userChattingChatsOpened = 0;
@@ -92,10 +92,11 @@ export class ChatComponent {
         finalResponse += "A";
       }
 
-      this.userChattingResponse = "";
-      this.userChattingResponse = finalResponse;
+      this.userChattingResponse[getLoggedInUserResponse] = finalResponse;
+      console.log(this.userChattingResponse)
     }, error => {
-      console.error(error);
+      this.userChattingResponse[getLoggedInUserResponse] = "Failed to get response.";
+      console.error('Error fetching user response:', error);
     });
   }
 
