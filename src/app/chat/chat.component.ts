@@ -20,6 +20,7 @@ export class ChatComponent {
   userDetails: Array<Object> = [];
   userChattingDetails: Array<Object> = [];
   userChattingMessages: Array<string> = [];
+  userChattingResponse: string = "";
   userChattingMessage = "";
   userChattingCharactersTyped = "";
   userChattingChatsOpened = 0;
@@ -76,6 +77,27 @@ export class ChatComponent {
     });
   }
 
+  getUserResponse(getLoggedInUserResponse: string) {
+    const url = 'https://httpbin.org/post';
+    const data = { text: getLoggedInUserResponse };
+
+    this.http.post(url, data).subscribe(response => {
+      let finalResponse = "";
+      let getLastNumber = response["origin"].charAt(response["origin"].length - 1);
+      for (let _ of response["json"]["text"]) {
+        finalResponse += "A";
+      };
+
+      for (let i = 0; i < getLastNumber; i++) {
+        finalResponse += "A";
+      }
+
+      this.userChattingResponse = finalResponse;
+    }, error => {
+      console.error(error);
+    });
+  }
+
   interact(user: any): void {
     user.interaction = !user.interaction;
   }
@@ -91,8 +113,8 @@ export class ChatComponent {
   }
 
   openChat(user: any): void {
-    this.userChattingDetails = user;
     this.userChattingMessages = [];
+    this.userChattingDetails = user;
     this.userChattingChatsOpened++;
   }
 
@@ -100,11 +122,12 @@ export class ChatComponent {
     this.userChattingMessages.push(this.userChattingMessage);
     this.userChattingCharactersTyped += this.userChattingMessage;
     this.userChattingMessage = "";
+    this.getUserResponse("Test")
   }
 
   closeChat(): void {
-    this.userChattingDetails = [];
     this.userChattingMessages = [];
+    this.userChattingDetails = [];
   }
 
   @HostListener('document:click', ['$event'])

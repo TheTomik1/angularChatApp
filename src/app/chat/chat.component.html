@@ -3,7 +3,7 @@
   <div class="navbar-nav mr-auto">
     <a class="nav-item nav-link" href="#">Clicks: {{ clickCount }}</a>
     <a class="nav-item nav-link" href="#">Characters typed: {{ userChattingCharactersTyped.length }}</a>
-    <a class="nav-item nav-link" href="#">Chats opened: {{ userChattingCharactersTyped }}</a>
+    <a class="nav-item nav-link" href="#">Chats opened: {{ userChattingChatsOpened }}</a>
   </div>
   <div class="navbar-nav ms-auto">
     <a class="nav-item nav-link" href="#">{{ currentUser }}</a>
@@ -67,7 +67,7 @@
             <div class="card text-bg-success p-3" style="width: 25rem; text-align: center; color: white">
               <h5 class="card-title">Message</h5>
               <p class="card-text">You: {{ message }}
-                <br>{{ userChattingDetails['firstName'] + ' ' + userChattingDetails['lastName'] }}: {{ "Not set yet" }}
+                <br>{{ userChattingDetails['firstName'] + ' ' + userChattingDetails['lastName'] }}: {{ userChattingResponse }}
               </p>
             </div>
           <div>
