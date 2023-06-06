@@ -18,7 +18,9 @@ export class ChatComponent {
   users: any = [];
   currentUser = this.authService.loggedInUser;
   userDetails: Array<Object> = [];
-  userChatting: Array<Object> = [];
+  userChattingDetails: Array<Object> = [];
+  userChattingMessages: Array<string> = [];
+  userChattingMessage = "";
   userLoginTime: LoginComponent["loginTime"];
   userGender = "";
   userCountry = "";
@@ -87,11 +89,17 @@ export class ChatComponent {
   }
 
   openChat(user: any): void {
-    this.userChatting = user;
+    this.userChattingDetails = user;
+  }
+
+  sendMessage(): void {
+    this.userChattingMessages.push(this.userChattingMessage)
+    this.userChattingMessage = "";
   }
 
   closeChat(): void {
-    this.userChatting = [];
+    this.userChattingDetails = [];
+    this.userChattingMessages = [];
   }
 
   @HostListener('document:click', ['$event'])

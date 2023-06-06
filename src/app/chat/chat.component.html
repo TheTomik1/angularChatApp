@@ -50,19 +50,27 @@
       </div>
     </div>
     <div class="col">
-      <div class="card" style="width: 30rem;" *ngIf="userChatting.length !== 0">
+      <div class="card" style="width: 30rem;" *ngIf="userChattingDetails.length !== 0">
         <div class="card-body">
-          <h5 class="card-title">Chat with {{ userChatting['firstName'] + ' ' + userChatting['lastName'] }}</h5>
-          <div class="form-group">
-            <label for="newmessage">New message</label>
-            <input type="text" class="form-control" id="newmessage" name="newmessage" placeholder="Type your message here."><br>
-            <button type="submit" class="btn btn-primary btn-block">Send the message</button>
-          </div>
-          <p class="card-text">
-          </p>
-
-          <a class="btn btn-danger" (click)="closeChat()">Close</a>
+          <h5 class="card-title">Chat with {{ userChattingDetails['firstName'] + ' ' + userChattingDetails['lastName'] }}</h5>
+          <form (ngSubmit)="sendMessage()">
+            <div class="form-group">
+              <label for="newmessage">New message</label>
+              <input type="text" class="form-control" id="newmessage" name="newmessage" placeholder="Type your message here." [(ngModel)]="userChattingMessage"><br>
+              <button type="submit" class="btn btn-primary btn-block">Send the message</button>
+              <a class="btn btn-danger close-chat" (click)="closeChat()">Close</a>
+            </div>
+          </form>
+          <div *ngFor="let message of userChattingMessages">
+            <div class="card text-bg-success p-3" style="width: 25rem; text-align: center; color: white">
+              <h5 class="card-title">Message</h5>
+              <p class="card-text">You: {{ message }}
+                <br>{{ userChattingDetails['firstName'] + ' ' + userChattingDetails['lastName'] }}: {{ "Not set yet" }}
+              </p>
+            </div>
+          <div>
         </div>
+      </div>
     </div>
   </div>
 </div>
