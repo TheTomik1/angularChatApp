@@ -90,6 +90,7 @@ export class ChatComponent {
 
   openChat(user: any): void {
     this.userChattingDetails = user;
+    this.userChattingMessages = [];
   }
 
   sendMessage(): void {
