@@ -24,6 +24,7 @@ export class LoginComponent {
           this.authService.login(user["firstName"]+user["lastName"]);
           this.router.navigate(['chat']);
           this.loginTime = new Date();
+          console.log(this.loginTime)
           return;
         }
       };

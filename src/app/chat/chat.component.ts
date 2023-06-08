@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { AuthService } from '../auth.service';
 
-import { LoginComponent } from '../login/login.component.js';
+import { LoginComponent } from '../login/login.component';
  
 @Component({
   selector: 'app-chat',
@@ -11,8 +11,9 @@ import { LoginComponent } from '../login/login.component.js';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent {
-  constructor(private http: HttpClient, private authService: AuthService) {
+  constructor(private http: HttpClient, private authService: AuthService, private loginCompoent: LoginComponent) {
     this.getUsersData();
+    this.userLoginTime = this.loginCompoent.loginTime;
   }
 
   users: any = [];
@@ -24,12 +25,14 @@ export class ChatComponent {
   userChattingMessage = "";
   userChattingCharactersTyped = "";
   userChattingChatsOpened = 0;
-  userLoginTime: LoginComponent["loginTime"];
+  userLoginTime: Date;
   userGender = "";
   userCountry = "";
   clickCount = 0;
 
   getUsersData(): void {
+    console.log(this.userLoginTime)
+
     this.http.get<any[]>('https://dummyjson.com/users').subscribe((response) => {
         for (let user of response["users"]) {
           if (user.firstName+user.lastName != this.authService.loggedInUser) {
