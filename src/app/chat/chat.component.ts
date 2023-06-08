@@ -2,8 +2,6 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { AuthService } from '../auth.service';
-
-import { LoginComponent } from '../login/login.component';
  
 @Component({
   selector: 'app-chat',
@@ -11,9 +9,8 @@ import { LoginComponent } from '../login/login.component';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent {
-  constructor(private http: HttpClient, private authService: AuthService, private loginCompoent: LoginComponent) {
+  constructor(private http: HttpClient, private authService: AuthService) {
     this.getUsersData();
-    this.userLoginTime = this.loginCompoent.loginTime;
   }
 
   users: any = [];
@@ -26,7 +23,7 @@ export class ChatComponent {
   userChattingCharactersTyped = "";
   userChattingChatsOpened = 0;
   userChattingHistory: any = [];
-  userLoginTime: Date;
+  userLoginTime: Date = new Date();
   userGender = "";
   userCountry = "";
   clickCount = 0;

@@ -14,7 +14,6 @@ export class LoginComponent {
 
   firstNameValue: string = "";
   lastNameValue: string = "";
-  loginTime: Date;
   
   validateLogin(): void {
     this.http.get('https://dummyjson.com/users').subscribe((response: any) => {
@@ -23,8 +22,6 @@ export class LoginComponent {
         if (user["firstName"] == this.firstNameValue && user["lastName"] == this.lastNameValue) {
           this.authService.login(user["firstName"]+user["lastName"]);
           this.router.navigate(['chat']);
-          this.loginTime = new Date();
-          console.log(this.loginTime)
           return;
         }
       };
