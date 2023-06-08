@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
+import { LoginComponent } from './login/login.component';
 import { ChatComponent } from './chat/chat.component';
 
 import { LoggedInGuard } from './logged.guard.service';
@@ -14,7 +15,7 @@ import { AuthService } from './auth.service';
 
 @NgModule({
   imports: [BrowserModule, CommonModule, AppRoutingModule, FormsModule, HttpClientModule],
-  providers: [AppComponent, LoggedInGuard, AuthService],
+  providers: [AppComponent, LoggedInGuard, AuthService, LoginComponent],
   declarations: [AppComponent, LoginComponent, ChatComponent],
   bootstrap: [AppComponent],
 })
