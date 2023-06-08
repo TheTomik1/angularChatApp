@@ -1,5 +1,5 @@
-.card {
-  margin: 5%;
+.card-users {
+  margin-bottom: 5%;
 }
 
 .chat-button {
@@ -16,4 +16,8 @@
 
 .close-chat {
   margin-left: 1vh;
+}
+
+nav {
+  margin-bottom: 1%;
 }
