@@ -123,7 +123,6 @@ export class ChatComponent {
     this.userChattingCharactersTyped += this.userChattingMessage;
     this.getUserResponse(this.userChattingMessage);
     this.userChattingHistory.push({
-      activeUser: this.currentUser,
       activeUserMessage: this.userChattingMessage,
       messageSentAt: new Date(),
       respondUser: this.userChattingDetails['firstName'] + ' ' + this.userChattingDetails['lastName'],
