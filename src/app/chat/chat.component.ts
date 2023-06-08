@@ -25,15 +25,13 @@ export class ChatComponent {
   userChattingMessage = "";
   userChattingCharactersTyped = "";
   userChattingChatsOpened = 0;
-  userChattingHistory: Array<object> = [];
+  userChattingHistory: any = [];
   userLoginTime: Date;
   userGender = "";
   userCountry = "";
   clickCount = 0;
 
   getUsersData(): void {
-    console.log(this.userLoginTime)
-
     this.http.get<any[]>('https://dummyjson.com/users').subscribe((response) => {
         for (let user of response["users"]) {
           if (user.firstName+user.lastName != this.authService.loggedInUser) {
@@ -97,7 +95,6 @@ export class ChatComponent {
       }
 
       this.userChattingResponse[getLoggedInUserResponse] = finalResponse;
-      console.log(this.userChattingResponse)
     }, error => {
       this.userChattingResponse[getLoggedInUserResponse] = "Failed to get response.";
       console.error('Error fetching user response:', error);
@@ -128,6 +125,16 @@ export class ChatComponent {
     this.userChattingMessages.push(this.userChattingMessage);
     this.userChattingCharactersTyped += this.userChattingMessage;
     this.getUserResponse(this.userChattingMessage);
+    this.userChattingHistory.push({
+      activeUser: this.currentUser,
+      activeUserMessage: this.userChattingMessage,
+      messageSentAt: new Date(),
+      respondUser: this.userChattingDetails['firstName'] + ' ' + this.userChattingDetails['lastName'],
+      respondUserMessage: this.userChattingResponse[this.userChattingMessage],
+      responseSentAt: new Date(),
+    })
+    console.log(this.userChattingHistory)
+
     this.userChattingMessage = "";
   }
 

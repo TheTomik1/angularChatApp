@@ -50,6 +50,20 @@
           <a class="btn btn-danger" (click)="closeUserDetails()">Close</a>
         </div>
       </div>
+
+      <div *ngIf="userDetails.length === 0"></div>
+        <div *ngFor="let chat of userChattingHistory">
+          <div class="card" style="width: 25rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{ chat.activeUser }} messaged {{ chat.respondUser }}</h5>
+              <p class="card-text">Message: {{ chat.activeUserMessage }}<br>
+                Sent at: {{  chat.messageSentAt.getDate() + "." + (chat.messageSentAt.getMonth()+1) + '.' + (chat.messageSentAt.getFullYear()) + ' ' + chat.messageSentAt.getHours() + ':' + chat.messageSentAt.getMinutes() + ':' + chat.messageSentAt.getSeconds() }}<br>
+                Response: {{ chat.respondUserMessage }}<br>
+                Responded At: {{  chat.responseSentAt.getDate() + "." + (chat.responseSentAt.getMonth()+1) + '.' + (chat.responseSentAt.getFullYear()) + ' ' + chat.responseSentAt.getHours() + ':' + chat.responseSentAt.getMinutes() + ':' + chat.responseSentAt.getSeconds() }}
+              </p>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col">
       <div class="card" style="width: 30rem;" *ngIf="userChattingDetails.length !== 0">
