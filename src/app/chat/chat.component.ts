@@ -150,6 +150,8 @@ export class ChatComponent {
   }
 
   logOut(): void {
+    
+
     alert(`Amount of characters sent during this login: ${this.userChattingCharactersTyped.length}\nLogin time: HH:MM:SS !!!!!!!`);
     this.authService.logOut();
     this.clickCount = 0;
