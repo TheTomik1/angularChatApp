@@ -54,7 +54,7 @@
 
         <div *ngIf="userDetails.length === 0">
             <div *ngFor="let chat of userChattingHistory">
-                <div class="card" style="width: 25rem; text-align: center;">
+                <div class="card" style="width: 25rem; text-align: center; margin-bottom: 5%;">
                     <div class="card-body">
                         <h5 class="card-title">{{ chat.activeUser }} messaged {{ chat.respondUser }}</h5>
                         <p class="card-text">Message: {{ chat.activeUserMessage }}<br>
