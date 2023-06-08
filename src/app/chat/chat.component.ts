@@ -22,7 +22,7 @@ export class ChatComponent {
   userChattingMessage = "";
   userChattingCharactersTyped = "";
   userChattingChatsOpened = 0;
-  userChattingHistory: any = [];
+  userChattingHistory: Array<any> = [];
   userLoginTime: Date = new Date();
   userGender = "";
   userCountry = "";
