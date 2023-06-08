@@ -18,7 +18,7 @@ export class ChatComponent {
   userDetails: Array<Object> = [];
   userChattingDetails: Array<Object> = [];
   userChattingMessages: Array<string> = [];
-  userChattingResponse: Array<object> = [];
+  userChattingResponses: Array<object> = [];
   userChattingMessage = "";
   userChattingCharactersTyped = "";
   userChattingChatsOpened = 0;
@@ -76,28 +76,6 @@ export class ChatComponent {
     });
   }
 
-  getUserResponse(getLoggedInUserResponse: string) {
-    const url = 'https://httpbin.org/post';
-    const data = { text: getLoggedInUserResponse };
-
-    this.http.post(url, data).subscribe(response => {
-      let finalResponse = "";
-      let getLastNumber = response["origin"].charAt(response["origin"].length - 1);
-      for (let _ of response["json"]["text"]) {
-        finalResponse += "A";
-      };
-
-      for (let i = 0; i < getLastNumber; i++) {
-        finalResponse += "A";
-      }
-
-      this.userChattingResponse[getLoggedInUserResponse] = finalResponse;
-    }, error => {
-      this.userChattingResponse[getLoggedInUserResponse] = "Failed to get response.";
-      console.error('Error fetching user response:', error);
-    });
-  }
-
   interact(user: any): void {
     user.interaction = !user.interaction;
   }
@@ -121,15 +99,35 @@ export class ChatComponent {
   sendMessage(): void {
     this.userChattingMessages.push(this.userChattingMessage);
     this.userChattingCharactersTyped += this.userChattingMessage;
-    this.getUserResponse(this.userChattingMessage);
+
+    const url = 'https://httpbin.org/post';
+    const data = { text: this.userChattingMessage };
+
+    this.http.post(url, data).subscribe(response => {
+      let finalResponse = "";
+      let getLastNumber = response["origin"].charAt(response["origin"].length - 1);
+      for (let _ of response["json"]["text"]) {
+        finalResponse += "A";
+      };
+
+      for (let i = 0; i < getLastNumber; i++) {
+        finalResponse += "A";
+      }
+
+      this.userChattingResponses[this.userChattingMessage] = finalResponse;
+    }, error => {
+      this.userChattingResponses[this.userChattingMessage] = "Failed to get response.";
+      console.error('Error fetching user response:', error);
+    });
+    const responseTime = new Date();
+
     this.userChattingHistory.push({
       activeUserMessage: this.userChattingMessage,
       messageSentAt: new Date(),
       respondUser: this.userChattingDetails['firstName'] + ' ' + this.userChattingDetails['lastName'],
-      respondUserMessage: this.userChattingResponse[this.userChattingMessage],
-      responseSentAt: new Date(),
+      respondUserMessage: this.userChattingResponses[this.userChattingMessage],
+      responseSentAt: responseTime,
     })
-    console.log(this.userChattingHistory)
 
     this.userChattingMessage = "";
   }
