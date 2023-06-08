@@ -97,14 +97,17 @@ export class ChatComponent {
   }
 
   sendMessage(): void {
-    this.userChattingMessages.push(this.userChattingMessage);
-    this.userChattingCharactersTyped += this.userChattingMessage;
+    let finalResponse = "";
+    let messageSentTime = new Date();
+    const userMessage = this.userChattingMessage;
 
+    this.userChattingMessages.push(userMessage);
+    this.userChattingCharactersTyped += userMessage;
+    
     const url = 'https://httpbin.org/post';
-    const data = { text: this.userChattingMessage };
+    const data = { text: userMessage};
 
     this.http.post(url, data).subscribe(response => {
-      let finalResponse = "";
       let getLastNumber = response["origin"].charAt(response["origin"].length - 1);
       for (let _ of response["json"]["text"]) {
         finalResponse += "A";
@@ -114,20 +117,24 @@ export class ChatComponent {
         finalResponse += "A";
       }
 
-      this.userChattingResponses[this.userChattingMessage] = finalResponse;
+      this.userChattingResponses[userMessage] = finalResponse;
+      this.userChattingHistory.push({
+        activeUserMessage: userMessage,
+        messageSentAt: messageSentTime,
+        respondUser: this.userChattingDetails['firstName'] + ' ' + this.userChattingDetails['lastName'],
+        respondUserMessage: finalResponse,
+        responseSentAt: new Date(),
+      });
     }, error => {
-      this.userChattingResponses[this.userChattingMessage] = "Failed to get response.";
-      console.error('Error fetching user response:', error);
+      this.userChattingResponses[userMessage] = "No response.";
+      this.userChattingHistory.push({
+        activeUserMessage: userMessage,
+        messageSentAt: messageSentTime,
+        respondUser: this.userChattingDetails['firstName'] + ' ' + this.userChattingDetails['lastName'],
+        respondUserMessage: finalResponse,
+        responseSentAt: new Date(),
+      });
     });
-    const responseTime = new Date();
-
-    this.userChattingHistory.push({
-      activeUserMessage: this.userChattingMessage,
-      messageSentAt: new Date(),
-      respondUser: this.userChattingDetails['firstName'] + ' ' + this.userChattingDetails['lastName'],
-      respondUserMessage: this.userChattingResponses[this.userChattingMessage],
-      responseSentAt: responseTime,
-    })
 
     this.userChattingMessage = "";
   }
