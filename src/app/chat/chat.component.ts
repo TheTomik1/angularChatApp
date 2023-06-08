@@ -25,6 +25,7 @@ export class ChatComponent {
   userChattingMessage = "";
   userChattingCharactersTyped = "";
   userChattingChatsOpened = 0;
+  userChattingHistory: Array<object> = [];
   userLoginTime: Date;
   userGender = "";
   userCountry = "";
