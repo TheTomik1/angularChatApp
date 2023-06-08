@@ -101,11 +101,12 @@ export class ChatComponent {
     let messageSentTime = new Date();
     const userMessage = this.userChattingMessage;
 
+    this.userChattingMessage = "";
     this.userChattingMessages.push(userMessage);
     this.userChattingCharactersTyped += userMessage;
     
     const url = 'https://httpbin.org/post';
-    const data = { text: userMessage};
+    const data = { text: userMessage };
 
     this.http.post(url, data).subscribe(response => {
       let getLastNumber = response["origin"].charAt(response["origin"].length - 1);
@@ -115,7 +116,7 @@ export class ChatComponent {
 
       for (let i = 0; i < getLastNumber; i++) {
         finalResponse += "A";
-      }
+      };
 
       this.userChattingResponses[userMessage] = finalResponse;
       this.userChattingHistory.push({
@@ -136,7 +137,6 @@ export class ChatComponent {
       });
     });
 
-    this.userChattingMessage = "";
   }
 
   closeChat(): void {
