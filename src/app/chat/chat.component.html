@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="./chat">Chat application</a>
   <div class="navbar-nav mr-auto">
-    <a class="nav-item nav-link" href="#">Clicks: {{ clickCount }}</a>
-    <a class="nav-item nav-link" href="#">Characters typed: {{ userChattingCharactersTyped.length }}</a>
-    <a class="nav-item nav-link" href="#">Chats opened: {{ userChattingChatsOpened }}</a>
+    <a class="nav-item nav-link">Clicks: {{ clickCount }}</a>
+    <a class="nav-item nav-link">Characters typed: {{ userChattingCharactersTyped.length }}</a>
+    <a class="nav-item nav-link">Chats opened: {{ userChattingChatsOpened }}</a>
   </div>
   <div class="navbar-nav ms-auto">
-    <a class="nav-item nav-link" href="#">{{ currentUser }}</a>
-    <a class="nav-item nav-link" href="#">Loggged at {{ userLoginTime.getDate() + "." + (userLoginTime.getMonth()+1) + '.' + (userLoginTime.getFullYear()) + ' ' + userLoginTime.getHours() + ':' + userLoginTime.getMinutes() + ':' + userLoginTime.getSeconds() }}</a>
+    <a class="nav-item nav-link">{{ currentUser }}</a>
+    <a class="nav-item nav-link">Loggged at {{ userLoginTime.getDate() + "." + (userLoginTime.getMonth()+1) + '.' + (userLoginTime.getFullYear()) + ' ' + userLoginTime.getHours() + ':' + userLoginTime.getMinutes() + ':' + userLoginTime.getSeconds() }}</a>
     <a class="nav-item nav-link" href="/login" (click)="logOut()">Log out</a>
   </div>
 </nav>
