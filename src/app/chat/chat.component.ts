@@ -153,10 +153,23 @@ export class ChatComponent {
     this.clickCount++;
   }
 
+  getTimeDifference(startDateTime: any, endDateTime: any): string {
+    let timeDifference = Math.abs(endDateTime - startDateTime) / 1000;
+  
+    let hours = Math.floor(timeDifference / 3600);
+    let minutes = Math.floor((timeDifference % 3600) / 60);
+    let seconds = Math.floor(timeDifference % 60);
+  
+    let formattedTime = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds < 10 ? "0" + seconds : seconds);
+  
+    return formattedTime;
+  }
+
   logOut(): void {
     const allResponses = Object.values(this.userChattingResponses);
+    this.getTimeDifference(this.userLoginTime, new Date())
 
-    alert(`Amount of characters sent during this login: ${allResponses.join('').length}\nLogin time: HH:MM:SS !!!!!!!`);
+    alert(`Amount of characters sent during this login: ${allResponses.join('').length}\nLogin time: ${this.getTimeDifference(this.userLoginTime, new Date())}`);
     this.authService.logOut();
     this.clickCount = 0;
     this.userChattingCharactersTyped = "";
