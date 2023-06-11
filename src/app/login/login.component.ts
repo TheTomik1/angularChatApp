@@ -20,7 +20,7 @@ export class LoginComponent {
       const users = response["users"];
       for (const user of users) {
         if (user["firstName"] == this.firstNameValue && user["lastName"] == this.lastNameValue) {
-          this.authService.login(user["firstName"]+user["lastName"]);
+          this.authService.login(user["firstName"]+ " " + user["lastName"]);
           this.router.navigate(['chat']);
           return;
         }
